@@ -11,10 +11,10 @@
 8. Check the `DOCKER_HOST_GID` to be equal to your local user `echo $GID` inside `.env`
 
 ## Installation
-1. `git clone git@github.com:KenoKokoro/better-challenge`
-2. Go to the `better-challenge` folder and run `cp .env.example .env`. Here in your `.env` file set you desired values. 
+1. `git clone https://github.com/cmosguy/laravel-php-interview.git`
+2. Go to the `laravel-php-interview` folder and run `cp .env.example .env`. Here in your `.env` file set you desired values. 
 Make sure that the `API_KEY` value is set properly since it is required for executing requests on `api/v1/tips` endpoint.
-3. Execute `make local-setup` to boot up the docker containers
+3. *THIS IS IMPORTANT*: Execute `make local-setup` to boot up the docker containers
 4. That should be it
 5. [Documentation link](https://documenter.getpostman.com/view/1567891/RzZAjxqw)
 6. The `DatabaseSeeder` will seed `20` dummy records, from which 2 are with hardcoded `uuid` since they are used in the 
