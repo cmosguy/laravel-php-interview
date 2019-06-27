@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         convertErrorsToExceptions="true"
+         convertNoticesToExceptions="true"
+         convertWarningsToExceptions="true"
+         processIsolation="false"
+         stopOnFailure="false">
+    <testsuites>
+        <testsuite name="V1Unit">
+            <directory suffix="Test.php">./app/Applications/API/V1/Tests/Unit</directory>
+        </testsuite>
+        <testsuite name="V1Feature">
+            <directory suffix="Test.php">./app/Applications/API/V1/Tests/Feature</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./app</directory>
+            <exclude>
+                <directory suffix=".php">./app/Applications/API/V1/Tests/</directory>
+                <file>./app/Applications/API/V1/Tests/</file>
+                <file>./app/Applications/API/V1/Http/routes.php</file>
+            </exclude>
+        </whitelist>
+    </filter>
+    <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="APP_URL" value="http://localhost/"/>
+        <env name="BCRYPT_ROUNDS" value="4"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="MAIL_DRIVER" value="array"/>
+        <env name="QUEUE_CONNECTION" value="sync"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="DB_CONNECTION" value="testing"/>
+        <env name="DB_USERNAME" value="testing"/>
+        <env name="DB_PASSWORD" value="testing"/>
+        <env name="DB_DATABASE" value="testing"/>
+    </php>
+</phpunit>

@@ -1,0 +1,849 @@
+{
+	"info": {
+		"_postman_id": "fd4ff881-6d59-4783-a857-04963aed946f",
+		"name": "Challenge Collection",
+		"description": "Whole collection with all requests included that are available on the API.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Index",
+			"item": [
+				{
+					"name": "Show paginated records [200]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "randomstring123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/tips?paginate=1&perPage=5&page=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tips"
+							],
+							"query": [
+								{
+									"key": "paginate",
+									"value": "1"
+								},
+								{
+									"key": "perPage",
+									"value": "5"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Paginate the tips to avoid overhead for many results"
+					},
+					"response": []
+				},
+				{
+					"name": "Bad pagination request [422]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "randomstring123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/tips?paginate=1&perPage=-1&page=bad-page",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tips"
+							],
+							"query": [
+								{
+									"key": "paginate",
+									"value": "1"
+								},
+								{
+									"key": "perPage",
+									"value": "-1"
+								},
+								{
+									"key": "page",
+									"value": "bad-page"
+								}
+							]
+						},
+						"description": "Bad pagination parameters should not return any results at all."
+					},
+					"response": []
+				},
+				{
+					"name": "Show all record [200]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "randomstring123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/tips",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tips"
+							]
+						},
+						"description": "Show all records without any pagination or any rules applied"
+					},
+					"response": []
+				}
+			],
+			"description": "Include all responses with 200 status code"
+		},
+		{
+			"name": "Show",
+			"item": [
+				{
+					"name": "Single entity [200]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "randomstring123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/tips/4174aa26-e72a-11e8-8e87-0242ac170003",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tips",
+								"4174aa26-e72a-11e8-8e87-0242ac170003"
+							]
+						},
+						"description": "Show single entity"
+					},
+					"response": []
+				},
+				{
+					"name": "Missing entity [404]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "randomstring123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/tips/missing-uuid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tips",
+								"missing-uuid"
+							]
+						},
+						"description": "Entity that doesn't exist in the database"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Store",
+			"item": [
+				{
+					"name": "Required fields [422]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "randomstring123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/tips",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tips"
+							]
+						},
+						"description": "Try to create a new Tip without required data provided."
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid data [422]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "randomstring123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text\",\n\t\"description\": \"Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text \"\n}"
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/tips",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tips"
+							]
+						},
+						"description": "Try to create new Tip with invalid data provided."
+					},
+					"response": []
+				},
+				{
+					"name": "Create new entity [201]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "randomstring123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Hello World !\",\n\t\"description\": \"Well, this is bit more descriptive hello world.\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/tips",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tips"
+							]
+						},
+						"description": "Create new Tip with valid data."
+					},
+					"response": []
+				}
+			],
+			"description": "Create new tip entity"
+		},
+		{
+			"name": "Update",
+			"item": [
+				{
+					"name": "Required fields [422]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "randomstring123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/tips/4174aa26-e72a-11e8-8e87-0242ac170003",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tips",
+								"4174aa26-e72a-11e8-8e87-0242ac170003"
+							]
+						},
+						"description": "Update existing Tip without the required data provided."
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid data [422]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "randomstring123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text Long text\",\n\t\"description\": \"Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text Another long text \"\n}"
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/tips/4174aa26-e72a-11e8-8e87-0242ac170003",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tips",
+								"4174aa26-e72a-11e8-8e87-0242ac170003"
+							]
+						},
+						"description": "Try to update existing Tip with invalid data provided."
+					},
+					"response": []
+				},
+				{
+					"name": "Update existing entity [200]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "randomstring123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Hello World\",\n\t\"description\": \"A bit descriptive Hello World.\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/tips/4174aa26-e72a-11e8-8e87-0242ac170003",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tips",
+								"4174aa26-e72a-11e8-8e87-0242ac170003"
+							]
+						},
+						"description": "Update existing Tip with valid data provided."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete",
+			"item": [
+				{
+					"name": "Missing entity [404]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "randomstring123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/tips/missing-uuid",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tips",
+								"missing-uuid"
+							]
+						},
+						"description": "Try to delete a entity that does not exists in the database"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete existing entity [200]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "randomstring123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/tips/97884b14-e72c-11e8-8d1a-0242ac170003",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tips",
+								"97884b14-e72c-11e8-8d1a-0242ac170003"
+							]
+						},
+						"description": "Delete entity that exists in the database."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "4XX",
+			"item": [
+				{
+					"name": "Invalid authorization header [401]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "wrong-token",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/tips",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tips"
+							]
+						},
+						"description": "Try to access tips route with authorization header"
+					},
+					"response": []
+				},
+				{
+					"name": "Method not allowed [405]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "randomstring123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/tips",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tips"
+							]
+						},
+						"description": "Try to access tips route with authorization header"
+					},
+					"response": []
+				},
+				{
+					"name": "Unprocessable entity [422]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "randomstring123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"title\": \"Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long Too-Long\",\n\t\"description\": null\n}"
+						},
+						"url": {
+							"raw": "http://localhost/api/v1/tips",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"v1",
+								"tips"
+							]
+						},
+						"description": "Try to access tips route with authorization header"
+					},
+					"response": []
+				},
+				{
+					"name": "Missing route [404]",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "randomstring123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost/api//tips",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"api",
+								"",
+								"tips"
+							]
+						},
+						"description": "Try to access tips route with authorization header"
+					},
+					"response": []
+				}
+			],
+			"description": "Requests with invalid user input"
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "randomstring123",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "9fee2763-76c3-4f5c-a267-2a00b4970924",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "b4b79b87-cc88-4aa8-bf57-c6c0ff460a45",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
