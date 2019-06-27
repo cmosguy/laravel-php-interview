@@ -1,4 +1,10 @@
-# Challenge
+# Laravel and PHP Interview Codebase
+The purpose of this repository is meant to be a tool to for you the interviewer to be able to boot up the code and use.  We'll be discussing the fundamentals of:
+
+1. Laravel's IoC Injection system
+2. Object Oriented Programming principles
+3. Docker
+4. Database
 
 ## Requirements
 1. Unix OS
