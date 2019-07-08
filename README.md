@@ -11,7 +11,7 @@ The purpose of this repository is meant to be a tool for an interviewee to be ab
 1. Available `80` port or any value that is set in the `.env` file as `NGINX_PORT` value
 1. Docker engine `1.13.0+` version or above
 1. Docker compose `1.21+` version or above
-1. `make` command installed
+1. Linux users should have `make` command installed, if you are windows google how to do this if you want.
 1. `git` installed
 1. Check the `DOCKER_HOST_UID` to be equal to your local user `echo $UID` inside `.env`
 1. Check the `DOCKER_HOST_GID` to be equal to your local user `echo $GID` inside `.env`
@@ -21,7 +21,9 @@ The purpose of this repository is meant to be a tool for an interviewee to be ab
 1. `git clone https://github.com/cmosguy/laravel-php-interview.git`
 1. Go to the `laravel-php-interview` folder and run `cp .env.example .env`. Here in your `.env` file set you desired values. 
 Make sure that the `API_KEY` value is set properly since it is required for executing requests on `api/v1/tips` endpoint.
-1. *THIS IS IMPORTANT*: Execute `make local-setup` to boot up the docker containers, that should be it
+1. *THIS IS IMPORTANT*: The follwing commands will setup containers and seed the database 
+    1.  *LINUX users:* execute `make local-setup` to boot up the docker containers, that should be it
+    1.  *Windows users:* Hopefully, you have `git-bash` for windows.  Execute the `bash` shell script: `./local-setup.sh` 
 1. Go to this link: [Documentation link](https://documenter.getpostman.com/view/1567891/RzZAjxqw), then click on *Run in Postman*.  This should import the collection as "Challenge"
 1. The `DatabaseSeeder` will seed `20` dummy records, from which 2 are with hardcoded `uuid` since they are used in the 
 `Postman collection` that can be found under `docs/` folder.
