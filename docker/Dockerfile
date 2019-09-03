@@ -1,9 +1,9 @@
 FROM php:7.2.3-fpm-stretch
 
-MAINTAINER Jimmy <stefan.brankovik@gmail.com>
+MAINTAINER Adam Klein <me@adamklein.io>
 
 ### NGINX
-ARG NGINX_VERSION=1.10.3-1+deb9u2
+ARG NGINX_VERSION=1.10.3-1+deb9u3
 ARG YARN_VERSION=1.10.1-1
 
 RUN apt-get update && apt-get install -y --no-install-recommends apt-utils gnupg2 apt-transport-https
